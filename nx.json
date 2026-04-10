@@ -93,6 +93,7 @@
       }
     }
   },
+  "bust": 1,
   "nxCloudId": "69d7aa42b69af143b63d0181",
   "analytics": true
 }

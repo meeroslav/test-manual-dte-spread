@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 env:
-  NX_CLOUD_DISTRIBUTED_EXECUTION: true # this enables DTE
+  # NX_CLOUD_DISTRIBUTED_EXECUTION: true # this enables DTE
   NX_VERBOSE_LOGGING: 'true'
   NX_BRANCH: ${{ github.event.number || github.ref_name }}
   NX_CLOUD_VERBOSE_LOGGING: 'true'
@@ -79,7 +79,7 @@ jobs:
       - run: npm ci
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v4
-      - run: npx nx affected -t test build typecheck
+      - run: npx nx affected -t test build typecheck --dte
 
   lint:
     runs-on: ubuntu-latest
@@ -98,7 +98,7 @@ jobs:
       - run: npm ci
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v4
-      - run: npx nx affected -t lint
+      - run: npx nx affected -t lint --dte
 
   e2e:
     runs-on: ubuntu-latest
@@ -117,7 +117,7 @@ jobs:
       - run: npm ci
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v4
-      - run: npx nx affected -t e2e
+      - run: npx nx affected -t e2e --dte
 
   complete-run:
     runs-on: ubuntu-latest
